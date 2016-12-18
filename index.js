@@ -25,6 +25,9 @@ function _addMessageReaction(emoji) {
 
 _Client.on('ready', () => {
 	_UpdateGuildEmojis();
+	_Client.guilds.forEach((guild) => {
+		_Client.editNickname(guild.id, _Config.Nickname);
+	});
 });
 
 _Client.on('connect', () => {
@@ -34,6 +37,12 @@ _Client.on('reconnecting', () => {
 });
 
 _Client.on('disconnect', () => {
+});
+
+_Client.on('guildMemberUpdate', (guild, member, oldMember) => {
+	if (member == _Client) {
+		_Client.editNickname(guild.id, _Config.Nickname);
+	}
 });
 
 _Client.on('messageCreate', (msg) => {
