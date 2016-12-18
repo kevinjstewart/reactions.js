@@ -10,33 +10,44 @@ const _KeywordEmojis = require(_Path.join(__dirname, 'keywords.js'));
 const _ErisApi = require("eris");
 const _Client = new _ErisApi(_Config.Token);
 
-_Client.on('ready', () => {
-	console.log("Connected");
+function _UpdateGuildEmojis() {
 	_Client.guilds.forEach((guild) => {
 		guild.emojis.forEach((emoji) => {
-			_Emojis.CreateEmoji({name: emoji.name, code: emoji.id, type: "EMOJI_SERVER"});
+			_Emojis.CreateOrUpdate({name: emoji.name, code: emoji.id, type: "EMOJI_SERVER"});
 		});
 	});
+}
+
+function _addMessageReaction(emoji) {
+	var e = _Emojis.ResolveEmoji(_Emojis.EmojiByName(t));
+	_Client.addMessageReaction(msg.channel.id, msg.id, e).then((msg) => { }, (err) => { });
+}
+
+_Client.on('ready', () => {
+	_UpdateGuildEmojis();
 });
 
 _Client.on('connect', () => {
-	console.log('Connecting');
 });
 
 _Client.on('reconnecting', () => {
-	console.log('Reconnecting');
 });
 
 _Client.on('disconnect', () => {
-	console.log('Disconnected');
 });
 
 _Client.on('messageCreate', (msg) => {
 	if (msg.author != _Client) {
 		var ke = _KeywordEmojis.SearchKeywords(msg.content);
 		ke.forEach((ke) => {
-			var e = _Emojis.ResolveEmoji(_Emojis.EmojiByName(ke.Emojis.random()));
-			_Client.addMessageReaction(msg.channel.id, msg.id, e).then((msg) => { }, (err) => { });
+			var r = ke.Emojis.random();
+			if (Array.isArray(r)) {
+				r.forEach((t) => {
+					_addMessageReaction(t);
+				});
+			} else {
+				_addMessageReaction(r);
+			}
 		});
 	}
 });

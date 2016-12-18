@@ -9,8 +9,10 @@ const _Keywords = [
 			/g(a|(h)?e)y/gi,
 		],
 		Emojis: [
-			"EAGLE",
-			"BLACK FLAG",
+			[
+				"EAGLE",
+				"BLACK FLAG",
+			],
 			"RAINBOW FLAG",
 		],
 	},

@@ -2436,5 +2436,19 @@ module.exports = {
 		if (e) {
 			e.code = emoji.code;
 		}
+	},
+	DeleteEmoji: (emoji) => {
+		var e = _Emojis.findIndex((e) => e.name === emoji.name.toUpperCase());
+		if (e != -1) {
+			_Emojis.splice(e, 1);
+		}
+	},
+	CreateOrUpdate: (emoji) => {
+		var e = _Emojis.find((e) => e.name === emoji.name.toUpperCase());
+		if (e) {
+			e.code = emoji.code;
+		} else {
+			_Emojis.push({type: emoji.type, name: emoji.name.toUpperCase(), code: emoji.code});
+		}
 	}
 };
