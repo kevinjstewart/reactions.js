@@ -29,7 +29,8 @@ const _Keywords = [
 	},
 	{
 		Keywords: [
-			/cheers/gi,
+			/cheer(s)?/gi,
+			/drink(s)?/gi,
 		],
 		Emojis: [
 			"CLINKING BEER MUGS",
