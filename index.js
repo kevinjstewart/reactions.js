@@ -18,8 +18,8 @@ function _UpdateGuildEmojis() {
 	});
 }
 
-function _addMessageReaction(emoji) {
-	var e = _Emojis.ResolveEmoji(_Emojis.EmojiByName(t));
+function _addMessageReaction(msg, emoji) {
+	var e = _Emojis.ResolveEmoji(_Emojis.EmojiByName(emoji));
 	_Client.addMessageReaction(msg.channel.id, msg.id, e).then((msg) => { }, (err) => { });
 }
 
@@ -52,10 +52,10 @@ _Client.on('messageCreate', (msg) => {
 			var r = ke.Emojis.random();
 			if (Array.isArray(r)) {
 				r.forEach((t) => {
-					_addMessageReaction(t);
+					_addMessageReaction(msg, t);
 				});
 			} else {
-				_addMessageReaction(r);
+				_addMessageReaction(msg, r);
 			}
 		});
 	}
