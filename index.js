@@ -13,7 +13,7 @@ const _Client = new _ErisApi(_Config.Token);
 function _UpdateGuildEmojis() {
 	_Client.guilds.forEach((guild) => {
 		guild.emojis.forEach((emoji) => {
-			_Emojis.CreateOrUpdate({name: emoji.name, code: emoji.id, type: "EMOJI_SERVER"});
+			_Emojis.CreateOrUpdateEmoji({name: emoji.name, code: emoji.id, type: "EMOJI_SERVER"});
 		});
 	});
 }
