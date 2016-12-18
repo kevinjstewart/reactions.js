@@ -1,1 +1,1 @@
-# reaction-bot.js
+# reactions.js
