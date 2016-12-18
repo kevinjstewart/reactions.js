@@ -40,13 +40,13 @@ _Client.on('disconnect', () => {
 });
 
 _Client.on('guildMemberUpdate', (guild, member, oldMember) => {
-	if (member == _Client) {
+	if (member.user == _Client.user) {
 		_Client.editNickname(guild.id, _Config.Nickname);
 	}
 });
 
 _Client.on('messageCreate', (msg) => {
-	if (msg.author != _Client) {
+	if (msg.author != _Client.user) {
 		var ke = _KeywordEmojis.SearchKeywords(msg.content);
 		ke.forEach((ke) => {
 			var r = ke.Emojis.random();
@@ -62,25 +62,25 @@ _Client.on('messageCreate', (msg) => {
 });
 
 _Client.on('messageUpdate', (oldMsg, newMsg) => {
-	if (msg.author != _Client) {
+	if (msg.author != _Client.user) {
 
 	}
 });
 
 _Client.on('messageDelete', (msg) => {
-	if (msg.author != _Client) {
+	if (msg.author != _Client.user) {
 
 	}
 });
 
 _Client.on('messageReactionAdd', (msg, emoji, userid) => {
-	if (msg.author != _Client) {
+	if (msg.author != _Client.user) {
 		_Client.addMessageReaction(msg.channel.id, msg.id, emoji.name).then((msg) => { }, (err) => { });
 	}
 });
 
 _Client.on('messageReactionRemove', (msg, emoji, userid) => {
-	if (msg.author != _Client) {
+	if (msg.author != _Client.user) {
 		_Client.removeMessageReaction(msg.channel.id, msg.id, emoji.name).then((msg) => { }, (err) => { });
 	}
 });
