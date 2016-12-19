@@ -23,7 +23,7 @@ const _Keywords = [
 	{
 		Name: "Meth",
 		Keywords: [
-			/meth/gi,
+			/meth\b/gi,
 			/crack/gi,
 			/pipe/gi,
 		],
@@ -37,10 +37,11 @@ const _Keywords = [
 		Keywords: [
 			/cheer(s)?/gi,
 			/drink(s)?/gi,
+			/liquor/gi,
+			/lik(k)?er/gi
 		],
 		Emojis: [
-			"CLINKING BEER MUGS",
-			"BEER MUG",
+			"CLINKING BEER MUGS"
 		]
 	},
 	{
@@ -48,6 +49,7 @@ const _Keywords = [
 		Keywords: [
 			/smoke/gi,
 			/dart(s)?/gi,
+			/cheech/gi
 		],
 		Emojis: [
 			"CIGARETTE",
